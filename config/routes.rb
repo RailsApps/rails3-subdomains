@@ -1,4 +1,6 @@
 Rails3Subdomains::Application.routes.draw do
+  get "profiles/show"
+
   #get \"users\/show\"
 
   root :to => "home#index"
