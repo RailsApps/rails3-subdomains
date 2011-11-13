@@ -1,3 +1,5 @@
 %h3 Home
 - @users.each do |user|
-  %p User: #{link_to user.name, user}
+  %br/ 
+  User: #{link_to user.name, user}
+  Profile: #{link_to root_url(:subdomain => user.name), root_url(:subdomain => user.name)}
