@@ -1,7 +1,6 @@
 Rails3Subdomains::Application.routes.draw do
   devise_for :users
   resources :users, :only => :show
-  match '/' => 'home#index', :constraints => { :subdomain => 'www' }
   constraints(Subdomain) do
     match '/' => 'profiles#show'
   end
