@@ -1,59 +1,265 @@
-h1. Rails3 Subdomains
+h1. Rails 3.1 Subdomains and Devise
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+This is a detailed Rails tutorial showing how to create an example Rails 3.1 application with subdomains and authentication using Devise. The "Devise":http://github.com/plataformatec/devise gem gives you ready-made authentication and user management. MongoDB is used as a datastore with the "Mongoid":http://mongoid.org/  gem for quick development without schemas or migrations.
 
-h2. More Information
+Best of all, there's a "detailed tutorial":http://github.com/RailsApps/rails3-subdomains/wiki/Tutorial (walk-through) to show how it's built.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+You can clone this app or generate a new Rails application using this app as a template.
 
-h2. Required Gems
+Any issues? Please create a "GitHub issue":http://github.com/RailsApps/rails3-subdomains/issues.
 
-This application requires this gem:
+h2. !http://twitter-badges.s3.amazonaws.com/t_logo-a.png(Follow on Twitter)!:http://www.twitter.com/rails_apps Follow on Twitter
 
-* "rails":http://rubygems.org/gems/rails
+Follow the project on Twitter: "@rails_apps":http://twitter.com/rails_apps. Please tweet some praise if you like what you've found.
+
+h2. !http://railsapps.github.com/images/rails-36x36.jpg(Tutorial)! Tutorial
+
+A complete walkthrough tutorial is available on the GitHub wiki:
+
+h4. "View the Tutorial":http://github.com/RailsApps/rails3-subdomains/wiki/Tutorial
+
+The tutorial documents each step to follow to create the application. Every step is documented concisely, so a complete beginner can create this application without any additional knowledge. However, no explanation is offered for any of the steps, so if you are a beginner, you’re advised to look for an introduction to Rails elsewhere. See a list of "recommended books and online resources for learning Rails":http://railsapps.github.com/best-recommended-learning-rails-books-resources.html.
+
+If you simply wish to modify the application for your own project, you can download the application and set it up as described below, without following the tutorial.
+
+h2. What Is Implemented -- and What Is Not
+
+The example app implements a common use of subdomains, often called "Basecamp-style subdomains in Rails." Visitors to the main site create a user account which is hosted at a subdomain that matches their user name. Each user has only one subdomain and when they log in, all their activity is confined to their subdomain.
+
+Another common use of subdomains can be called "blog-style subdomains." This approach is familiar to users of sites such as wordpress.com where each user can create multiple blogs and each is hosted on its own subdomain. For example, a user with the email address "user@example.com@" can own more than one blog, for example, "puppyphotos.wordpress.com" and "kittenphotos.wordpress.com". The "blog-style subdomains" approach is not implemented in this example application.
+
+h4. Similar Examples and Tutorials
+
+See a list of additional "Rails examples, tutorials, and starter apps":http://railsapps.github.com/rails-examples-tutorials.html.
 
 h2. Dependencies
 
-To use this application, you will need:
+Before running this app, you will need:
 
-* The Ruby language (version 1.8.7 or 1.9.2)
-* Rails (version 3.0.4 or newer)
+* The Ruby language (version 1.9.3)
+** @$ ruby -v@
+* Rails 3.1.1
+** @$ rails -v@
+* Rake 0.9.2
+** @$ rake --version@
+* A working installation of "MongoDB":http://www.mongodb.org/ (version 1.6.0 or newer)
 
-h2. Installing the Application
+See "Installing Rails 3.1":http://railsapps.github.com/installing-rails-3-1.html and "Managing Rails Versions and Gems":http://railsapps.github.com/managing-rails-versions-gems.html for detailed instructions and advice.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+h4. Installing MongoDB
+
+If you don't have MongoDB installed on your computer, you'll need to install it and set it up to be always running on your computer (run at launch). On Mac OS X, the easiest way to install MongoDB is to install "Homebrew":http://mxcl.github.com/homebrew/ and then run the following:
+
+<pre>
+brew install mongodb
+</pre>
+
+Homebrew will provide post-installation instructions to get MongoDB running. The last line of the installation output shows you the MongoDB install location (for example, */usr/local/Cellar/mongodb/1.8.0-x86_64*). You'll find the MongoDB configuration file there. After an installation using Homebrew, the default data directory will be */usr/local/var/mongodb*.
+
+h2. Getting the Application
+
+You have several options for getting the code.
+
+h4. Downloading the Code
+
+If you simply wish to examine the example code, you can download the code ("clone the repository") with the command
+
+@$ git clone git://github.com/RailsApps/rails3-subdomains.git@
+
+The source code is managed with Git (a version control system). You'll need Git on your machine (install it from "http://git-scm.com/":http://git-scm.com/).
+
+h4. Using the Ready-Made Application Template
+
+You can use an application template to generate a new version of the example app. You’ll find an application template for this app in the "Rails Application Templates":https://github.com/RailsApps/rails3-application-templates repository.
+
+Use the command:
+
+@$ rails new myapp -m https://github.com/RailsApps/rails3-application-templates/raw/master/rails3-subdomains-template.rb -T -O@
+
+Use the @-T -O@ flags to skip Test::Unit files and Active Record files.
+
+This creates a new Rails app (with the name @myapp@) on your computer.
+
+The application generator templates will ask you for various preferences:
+
+* Would you like to use jQuery?
+* Would you like to use jQuery UI?
+* Would you like to use Haml instead of ERB?
+* Would you like to use RSpec instead of TestUnit?
+* Would you like to use factory_girl for test fixtures with RSpec?
+* Would you like to use Cucumber for your BDD?
+* Would you like to use Guard to automate your workflow?
+* Would you like to use Mongoid to connect to a MongoDB database?
+* Would you like to use Devise for authentication?
+* Would you like to set a robots.txt file to ban spiders?
+* Would you like to use 'rails-footnotes' during development?
+* Which front-end framework would you like for HTML5 and CSS3?
+## None
+## Zurb Foundation
+## Twitter Bootstrap
+## Skeleton
+## Normalize CSS for consistent styling
+
+h4. Use "Recipes" to Customize an Application Template
+
+The "tutorial":http://github.com/RailsApps/rails3-subdomains/wiki/Tutorial shows how a customized application template can be assembled from "recipes." The application template was created using the "Rails Apps Composer":https://github.com/RailsApps/rails_apps_composer gem which provides a convenient way to assemble a reusable application template by selecting various "recipes" for popular Rails development packages.
+
+h4. Please Remember: Edit the README
+
+If you're open sourcing the app on GitHub, please edit the README file to add a description of the app and your contact info. Changing the README is important if you're using a clone of the example app. I've been mistaken (and contacted) as the author of apps that are copied from my example.
 
 h2. Getting Started
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+h4. About Required Gems
+
+The application uses the following gems:
+
+* "rails":http://rubygems.org/gems/rails
+* "rspec-rails":http://rubygems.org/gems/rspec-rails
+* "database_cleaner":http://rubygems.org/gems/database_cleaner
+* "factory_girl_rails":http://rubygems.org/gems/factory_girl_rails
+* "cucumber-rails":http://rubygems.org/gems/cucumber-rails
+* "capybara":http://rubygems.org/gems/capybara
+* "mongoid":http://rubygems.org/gems/mongoid
+* "bson_ext":http://rubygems.org/gems/bson_ext
+* "devise":http://rubygems.org/gems/devise
+
+See an example "Rails 3.1.1 Gemfile":http://railsapps.github.com/rails-3-1-1-example-gemfile.html.
+
+See "Managing Rails Versions and Gems":http://railsapps.github.com/managing-rails-versions-gems.html for advice and details.
+
+h4. Install the Required Gems
+
+Install the required gems on your computer:
+
+@$ bundle install@
+
+You can check which gems are installed on your computer with:
+
+@$ gem list --local@
+
+Keep in mind that you have installed these gems locally. When you deploy the app to another server, the same gems (and versions) must be available.
+
+h4. Configure Mongoid
+
+Mongoid provides access to the MongoDB database from Rails.
+
+You can use the default configuration found in the file *config/mongoid.yml*.
+
+If you want to see what's in your MongoDB databases, I recommend using the "MongoHub":http://mongohub.todayclose.com/ app (for Mac OS X).
+
+h4. Set Up Configuration for Devise
+
+This app uses Devise for user management and authentication. Devise is at "http://github.com/plataformatec/devise":http://github.com/plataformatec/devise.
+
+You can modify the configuration file for Devise if you want to use something other than the defaults:
+
+*config/initializers/devise.rb*
+
+h4. Configure Email for Devise
+
+Configure email by modifying
+
+*config/initializers/devise.rb*
+
+and setting the return email address for emails sent from the application.
+
+You may need to set values for your mailhost in
+
+*config/environments/development.rb*
+*config/environments/production.rb*
+
+h2. Create a Default User
+
+h4. Set Up a Database Seed File
+
+You'll want to set up a default user so you can easily log in to test the app. You can modify the file *db/seeds.rb* for your own name, email and password:
+
+<pre>
+puts 'EMPTY THE MONGODB DATABASE'
+Mongoid.master.collections.reject { |c| c.name =~ /^system/}.each(&:drop)
+puts 'SETTING UP DEFAULT USER LOGIN'
+user = User.create! :name => 'myname', :email => 'user@example.com', :password => 'please', :password_confirmation => 'please'
+puts 'New user created: ' << user.name
+</pre>
+
+Use the defaults or change the values for name, email, and password as you wish.
+
+h4. Seed the Database
+
+Add the default user to the MongoDB database by running the command:
+
+@$ rake db:seed@
+
+h4. Test the Application With Subdomains
+
+If you launch the application, it will be running at "http://localhost:3000/":http://localhost:3000/ or "http://0.0.0.0:3000/":http://0.0.0.0:3000/. However, unless you've made some configuration changes to your computer, you won't be able to resolve an address that uses a subdomain, such as "http://foo.localhost:3000/":http://foo.localhost:3000/. There are several complex solutions to this problem. You could set up your own domain name server on your localhost and create an A entry to catch all subdomains. You could modify your */etc/hosts* file (but it won't accommodate dynamically created subdomains). You can create a "proxy auto-config (PAC)":http://en.wikipedia.org/wiki/Proxy_auto-config file and set it up as the proxy in your web browser preferences.There's a far simpler solution that does not require reconfiguring your computer or web browser preferences. The developer Levi Cook registered a domain, "lvh.me":http://lvh.me:3000/ (short for: local virtual host me), that resolves to the localhost IP address 127.0.0.1 and supports wildcards (accommodating dynamically created subdomains).
+
+To test the application, visit "http://lvh.me:3000/":http://lvh.me:3000/. You should see a list of registered users with links to their profile pages.
+
+Try "http://myname.lvh.me:3000/":http://myname.lvh.me:3000/. You should see the profile page for the default user "myname."
+
+Try "http://foo.lvh.me:3000/":http://foo.lvh.me:3000/. You should see the "user not found" error message.
+
+Try "http://www.lvh.me:3000/":http://www.lvh.me:3000/. You should be redirected to the application home page at "http://lvh.me:3000/":http://lvh.me:3000/.
+
+To sign in as the default user, (unless you've changed it) use
+
+* email: user@example.com
+* password: please
+
+You should delete or change the pre-configured logins before you deploy your application.
+
+h2. Deploy to Heroku
+
+For your convenience, here are "instructions for deploying your app to Heroku":http://railsapps.github.com/rails-heroku-tutorial.html. Heroku provides low cost, easily configured Rails application hosting.
+
+h2. Customizing
+
+"Devise":http://github.com/plataformatec/devise provides a variety of features for implementing authentication. See the Devise documentation for options.
+
+This example application and tutorial demonstrates Devise and Mongoid working together on Rails 3. Add any models, controllers, and views that you need.
+
+h2. Testing
+
+The application is set up for RSpec unit tests and Cucumber scenarios and steps. No tests and scenarios are implemented for this version of the example application. Please send the author a message, create an issue, or submit a pull request if you can contribute RSpec or Cucumber tests and scenarios.
+
+After installing the application, run @rake -T@ to check that rake tasks for RSpec and Cucumber are available.
+
+Run @rake spec@ to run all RSpec tests.
+
+Run @rake cucumber@ (or more simply, @cucumber@) to run all Cucumber scenarios and steps.
 
 h2. Documentation and Support
 
-This is the only documentation.
+See the "Tutorial":http://github.com/RailsApps/rails3-subdomains/wiki/Tutorial for this app for details of how it was built.
+
+For a Mongoid introduction, Ryan Bates offers a "Railscast on Mongoid":http://railscasts.com/episodes/238-mongoid. You can find documentation for "Mongoid":http://mongoid.org/ at "http://mongoid.org/":http://mongoid.org/ There is an active "Mongoid mailing list":http://groups.google.com/group/mongoid and you can submit "Mongoid issues":http://github.com/durran/mongoid/issues at GitHub.
+
+For a Devise introduction, Ryan Bates offers a "Railscast on Devise":http://railscasts.com/episodes/209-introducing-devise. You can find documentation for "Devise":http://github.com/plataformatec/devise at "http://github.com/plataformatec/devise":http://github.com/plataformatec/devise. There is an active "Devise mailing list":http://groups.google.com/group/plataformatec-devise and you can submit "Devise issues":http://github.com/plataformatec/devise/issues at GitHub.
 
 h4. Issues
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-h2. Similar Projects
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Please create an "issue on GitHub":http://github.com/RailsApps/rails3-subdomains/issues if you identify any problems or have suggestions for improvements.
 
 h2. Contributing
 
 If you make improvements to this application, please share with others.
 
-* Fork the project on GitHub.
-* Make your feature addition or bug fix.
-* Commit with Git.
-* Send the author a pull request.
+Send the author a message, create an "issue":http://github.com/RailsApps/rails3-subdomains/issues, or fork the project and submit a pull request.
 
 If you add functionality to this application, create an alternative implementation, or build an application that is similar, please contact me and I'll add a note to the README so that others can find your work.
 
 h2. Credits
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Daniel Kehoe ("http://danielkehoe.com/":http://danielkehoe.com/) implemented the application and wrote the tutorial.
+
+Is the app useful to you? Follow the project on Twitter:
+"@rails_apps":http://twitter.com/rails_apps
+and tweet some praise. I'd love to know you were helped out by what I've put together.
 
 h2. License
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+h4. Public Domain Dedication
+
+This work is a compilation and derivation from other previously released works. With the exception of various included works, which may be restricted by other licenses, the author or authors of this code dedicate any and all copyright interest in this code to the public domain. We make this dedication for the benefit of the public at large and to the detriment of our heirs and successors. We intend this dedication to be an overt act of relinquishment in perpetuity of all present and future rights to this code under copyright law.
