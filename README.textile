@@ -191,7 +191,7 @@ Add the default user to the MongoDB database by running the command:
 
 @$ rake db:seed@
 
-h4. Test the Application With Subdomains
+h2. Test the Application With Subdomains
 
 If you launch the application, it will be running at "http://localhost:3000/":http://localhost:3000/ or "http://0.0.0.0:3000/":http://0.0.0.0:3000/. However, unless you've made some configuration changes to your computer, you won't be able to resolve an address that uses a subdomain, such as "http://foo.localhost:3000/":http://foo.localhost:3000/. There are several complex solutions to this problem. You could set up your own domain name server on your localhost and create an A entry to catch all subdomains. You could modify your */etc/hosts* file (but it won't accommodate dynamically created subdomains). You can create a "proxy auto-config (PAC)":http://en.wikipedia.org/wiki/Proxy_auto-config file and set it up as the proxy in your web browser preferences.There's a far simpler solution that does not require reconfiguring your computer or web browser preferences. The developer Levi Cook registered a domain, "lvh.me":http://lvh.me:3000/ (short for: local virtual host me), that resolves to the localhost IP address 127.0.0.1 and supports wildcards (accommodating dynamically created subdomains).
 
