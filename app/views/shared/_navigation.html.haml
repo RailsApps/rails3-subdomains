@@ -1,12 +1,16 @@
-- if user_signed_in?
-  %li
-    = link_to('Logout', destroy_user_session_path, :method=>'delete')
+%li
+  = link_to 'Main', root_url(:host => request.domain)
+- unless request.subdomain.present? && request.subdomain != "www"
+  - if user_signed_in?
+    %li
+      = link_to('Edit account', edit_user_registration_path)
+  - else
+    %li
+      = link_to('Sign up', new_user_registration_path)
 - else
-  %li
-    = link_to('Login', new_user_session_path)
-- if user_signed_in?
-  %li
-    = link_to('Edit account', edit_user_registration_path)
-- else
-  %li
-    = link_to('Sign up', new_user_registration_path)
+  - if user_signed_in?
+    %li
+      = link_to('Logout', destroy_user_session_path, :method=>'delete')
+  - else
+    %li
+      = link_to('Login', new_user_session_path)
