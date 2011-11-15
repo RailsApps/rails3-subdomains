@@ -6,5 +6,4 @@ class ProfilesController < ApplicationController
   def not_found
     raise ActionController::RoutingError.new('User Not Found')
   end
-
 end
