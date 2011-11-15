@@ -1,10 +1,16 @@
 Rails3Subdomains::Application.routes.draw do
+  
+
+  
+
   devise_for :users
   resources :users, :only => :show
   constraints(Subdomain) do
     match '/' => 'profiles#show'
   end
   root :to => "home#index"
+
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
