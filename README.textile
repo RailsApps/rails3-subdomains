@@ -252,13 +252,13 @@ If you add functionality to this application, create an alternative implementati
 
 h2. Credits
 
+Thank you to "Brian Cardarella":http://bcardarella.com/ for a helpful blog post on "Custom Subdomains in Rails 3":http://bcardarella.com/post/716951242/custom-subdomains-in-rails-3.
+
 Daniel Kehoe ("http://danielkehoe.com/":http://danielkehoe.com/) implemented the application and wrote the tutorial.
 
 Is the app useful to you? Follow the project on Twitter:
 "@rails_apps":http://twitter.com/rails_apps
 and tweet some praise. I'd love to know you were helped out by what I've put together.
-
-Thank you to "Brian Cardarella":http://bcardarella.com/ for a helpful blog post on "Custom Subdomains in Rails 3":http://bcardarella.com/post/716951242/custom-subdomains-in-rails-3.
 
 h2. License
 
