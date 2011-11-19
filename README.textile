@@ -38,7 +38,7 @@ Before running this app, you will need:
 
 * The Ruby language (version 1.9.3)
 ** @$ ruby -v@
-* Rails 3.1.1
+* Rails 3.1
 ** @$ rails -v@
 * Rake 0.9.2
 ** @$ rake --version@
@@ -124,7 +124,7 @@ The application uses the following gems:
 * "bson_ext":http://rubygems.org/gems/bson_ext
 * "devise":http://rubygems.org/gems/devise
 
-See an example "Rails 3.1.1 Gemfile":http://railsapps.github.com/rails-3-1-1-example-gemfile.html.
+See an example "Rails 3.1.2 Gemfile":http://railsapps.github.com/rails-3-1-2-example-gemfile.html.
 
 See "Managing Rails Versions and Gems":http://railsapps.github.com/managing-rails-versions-gems.html for advice and details.
 
