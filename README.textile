@@ -124,7 +124,7 @@ The application uses the following gems:
 * "bson_ext":http://rubygems.org/gems/bson_ext
 * "devise":http://rubygems.org/gems/devise
 
-See an example "Rails 3.1.2 Gemfile":http://railsapps.github.com/rails-3-1-2-example-gemfile.html.
+See an example "Rails 3.1.3 Gemfile":http://railsapps.github.com/rails-3-1-3-example-gemfile.html.
 
 See "Managing Rails Versions and Gems":http://railsapps.github.com/managing-rails-versions-gems.html for advice and details.
 
