@@ -1,7 +1,8 @@
 class User
   include Mongoid::Document
   # Include default devise modules. Others available are:
-  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
+  # :token_authenticatable, :confirmable,
+  # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -23,9 +24,6 @@ class User
   field :current_sign_in_ip, :type => String
   field :last_sign_in_ip,    :type => String
 
-  ## Encryptable
-  # field :password_salt, :type => String
-
   ## Confirmable
   # field :confirmation_token,   :type => String
   # field :confirmed_at,         :type => Time
@@ -39,13 +37,14 @@ class User
 
   ## Token authenticatable
   # field :authentication_token, :type => String
+  # run 'rake db:mongoid:create_indexes' to create indexes
+  index :email, :unique => true
   field :name
   validates_presence_of :name
   validates_format_of :name, with: /^[a-z0-9_]+$/, message: 'must be lowercase alphanumerics only'
   validates_length_of :name, maximum: 32, message: 'exceeds maximum of 32 characters'
   validates_exclusion_of :name, in: ['www', 'mail', 'ftp'], message: 'is not available'
   
-validates_uniqueness_of :name, :email, :case_sensitive => false
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me
+attr_accessible :name, :email, :password, :password_confirmation, :remember_me
 end
 
