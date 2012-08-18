@@ -1,13 +1,15 @@
-!!!
+<!doctype html>
 %html
   %head
-    %title Rails3 Subdomains
     %meta{:charset => "utf-8"}
-    %meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
-    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
-    = stylesheet_link_tag :application, :media => "all"
-    = javascript_include_tag :application
-    = csrf_meta_tags
+      %meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}
+        %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+          %title Rails3 Subdomains
+          %meta{:content => "", :name => "description"}
+            %meta{:content => "", :name => "author"}
+              = stylesheet_link_tag    "application", :media => "all"
+              = javascript_include_tag "application"
+              = csrf_meta_tags
   %body
     #container.container
       %header
@@ -16,3 +18,4 @@
       #main{:role => "main"}
         = yield
       %footer
+    / ! end of #container
