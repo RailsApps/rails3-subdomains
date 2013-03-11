@@ -309,7 +309,7 @@ Try "http://www.lvh.me:3000/":http://www.lvh.me:3000/. You should be redirected 
 To sign in as the default user, (unless you've changed it) use
 
 * email: user@example.com
-* password: please
+* password: changeme
 
 You should delete or change the pre-configured logins before you deploy your application.
 
