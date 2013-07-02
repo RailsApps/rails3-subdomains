@@ -1,12 +1,12 @@
 ### UTILITY METHODS ###
 
 def create_visitor
-  @visitor ||= { :name => "Testy McUserton", :email => "example@example.com",
+  @visitor ||= { :name => "testymcuserton", :email => "example@example.com",
     :password => "changeme", :password_confirmation => "changeme" }
 end
 
 def find_user
-  @user ||= User.first conditions: {:email => @visitor[:email]}
+  @user ||= User.where('email' => @visitor[:email]).first
 end
 
 def create_unconfirmed_user
@@ -23,7 +23,7 @@ def create_user
 end
 
 def delete_user
-  @user ||= User.first conditions: {:email => @visitor[:email]}
+  find_user
   @user.destroy unless @user.nil?
 end
 
@@ -135,13 +135,11 @@ end
 ### THEN ###
 Then /^I should be signed in$/ do
   page.should have_content "Logout"
-  page.should_not have_content "Sign up"
   page.should_not have_content "Login"
 end
 
 Then /^I should be signed out$/ do
   page.should have_content "Sign up"
-  page.should have_content "Login"
   page.should_not have_content "Logout"
 end
 
